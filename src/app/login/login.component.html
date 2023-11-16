@@ -1,0 +1,72 @@
+<div class="container mt-5">
+  <div class="card text-center" style=" padding: 20px;">
+
+    <!--  
+<form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+
+        <input type="text"
+        ngModel
+        name="userName"
+        id="userName"   
+        placeholder="Enter your username"
+        class="form-control mb-3"
+        >
+
+        <input type="password"
+        ngModel
+        name="userPassword"
+        id="userPassword" 
+        placeholder="Enter your password"
+        class="form-control mb-3"
+        >
+        <input type="submit"
+        value="Login"
+        class="btn btn-outline-primary form-control rounded-0"
+        >
+      </form>
+
+    -->
+    <form [formGroup]="loginForm" (ngSubmit)="login(loginForm)" novalidate>
+
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>userName</mat-label>
+        <input matInput placeholder="Placeholder"
+        type="text" formControlName="userName"
+        
+        [ngClass]="{'error-field': loginForm.get('userName').invalid && loginForm.get('userName').touched }"
+        
+         >
+        <div *ngIf="loginForm.get('userName').hasError('required')" class="error-message">
+          Le nom d'utilisateur est requis.
+        </div>
+        <div *ngIf="loginForm.get('userName').hasError('minlength')" class="error-message">
+          Le nom d'utilisateur doit contenir au moins 3 caractères.
+        </div>
+
+        <mat-hint>userName</mat-hint>
+      </mat-form-field>
+     
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>userPassword</mat-label>
+        <input matInput placeholder="Placeholder" 
+        type="password" formControlName="userPassword"
+        [ngClass]="{'error-field-password': loginForm.get('userPassword').invalid && loginForm.get('userPassword').touched }"
+         >
+        <div *ngIf="loginForm.get('userPassword').hasError('required')" class="error-message-password">
+          Le mot de passe est requis.
+        </div>
+        <div *ngIf="loginForm.get('userPassword').hasError('maxlength')"   class="error-message-password">
+          Le mot de passe doit contenir  moins 15 caractères.
+        </div>
+        <div *ngIf="loginForm.get('userPassword').hasError('minlength')"   class="error-message-password">
+          Le mot de passe doit contenir au moins 6 caractères.
+        </div>
+        <mat-hint>userPassword</mat-hint>
+      </mat-form-field>
+      <button class="w-100" mat-raised-button color="primary">Login</button>
+
+      
+     
+    </form>
+  </div>
+</div>

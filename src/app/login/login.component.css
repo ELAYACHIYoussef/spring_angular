@@ -1,0 +1,22 @@
+.error-message {
+    color: red; /* Couleur du texte en rouge */
+    font-size: 14px; /* Taille de la police */
+    margin-top: 5px; /* Marge supérieure pour séparer les messages d'erreur des champs */
+  }
+  
+  /* Style pour les champs en erreur */
+  .error-field {
+    border: 2px solid red; /* Bordure rouge autour du champ en erreur */
+  }
+  /* Style pour les messages d'erreur */
+.error-message-password {
+    color: red; /* Couleur du texte en rouge */
+    font-size: 14px; /* Taille de la police */
+    margin-top: 5px; /* Marge supérieure pour séparer les messages d'erreur des champs */
+  }
+  
+  /* Style pour le champ 'userPassword' en erreur */
+  .error-field-password {
+    border: 2px solid red; /* Bordure rouge autour du champ en erreur */
+  }
+  
