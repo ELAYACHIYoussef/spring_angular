@@ -24,4 +24,8 @@ export class ProductService {
   public updateProduct(productId: number, product: Product) {
     return this.httpClient.put("http://localhost:9095/updateProduct/" + productId, product);
   }
+
+  public getProductById(productId){
+    return this.httpClient.get<Product>("http://localhost:9095/getProductById"+productId);
+  }
 }
