@@ -8,10 +8,14 @@ import { FileHandle } from '../_model/file-handle.module';
 })
 export class ShowImageProductDialogComponent implements OnInit{
 
-   constructor(){}
+   constructor(@Inject(MAT_DIALOG_DATA) public data:any){}
 
   ngOnInit(): void {
-   
+   this.receiveImages();
+  }
+
+  receiveImages(){
+    console.log(this.data)
   }
   
 }

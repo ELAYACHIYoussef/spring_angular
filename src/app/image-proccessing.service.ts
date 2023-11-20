@@ -10,37 +10,33 @@ export class ImageProccessingService {
 
   constructor(private sanitizer:DomSanitizer) { }
 
- public createImages(product: Product): Product {
+  public createImages(product: Product): Product {
     const productImages: any[] = product.productImages;
-
     const productImagesToFileHandle: FileHandle[] = [];
-
+  
     for (let i = 0; i < productImages.length; i++) {
       const imageFileData = productImages[i];
-
-      // Check if picBytes is a valid Base64 string
-      if (!this.isValidBase64(imageFileData.picBytes)) {
-        console.error('Invalid Base64 format:', imageFileData.picBytes);
-        continue; // Skip to the next iteration if the data is invalid
+  
+      if (!this.isValidBase64(imageFileData.picByte)) {
+        console.error('Invalid Base64 format:', imageFileData.picByte);
+        continue;
       }
-
-      const imageBlob = this.dataURLtoBlob(imageFileData.picBytes, imageFileData.type);
-
+  
+      const imageBlob = this.dataURLtoBlob(imageFileData.picByte, imageFileData.type);
+  
       const imageFile = new File([imageBlob], imageFileData.name, { type: imageFileData.type });
-
+  
       const finalFileHandle: FileHandle = {
         file: imageFile,
         url: this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(imageFile))
       };
-
+  
       productImagesToFileHandle.push(finalFileHandle);
     }
-
+  
     product.productImages = productImagesToFileHandle;
-
     return product;
   }
-
   public dataURLtoBlob(picBytes: string, imageType: string): Blob {
     try {
       const byteString = window.atob(picBytes);
