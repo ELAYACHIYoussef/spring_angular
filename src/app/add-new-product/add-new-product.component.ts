@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 import { FileHandle } from '../_model/file-handle.module';
 import { Product } from '../_model/product.model';
 import { ProductService } from '../_services/product.service';
@@ -24,7 +25,8 @@ export class AddNewProductComponent implements OnInit{
 
   constructor(private formBuilder: FormBuilder,
     private productService: ProductService,
-    private sanitazer:DomSanitizer
+    private sanitazer:DomSanitizer,
+    private activatedRoute:ActivatedRoute
    ) {
     this.productForm = this.formBuilder.group({
       productName: ['', [Validators.required, Validators.minLength(2)]],
@@ -34,7 +36,9 @@ export class AddNewProductComponent implements OnInit{
     });
   }
   ngOnInit(): void {
-    
+    this.activatedRoute.data.subscribe(data => {
+    this.product = data['product'];
+  });
   }
 
   public addProduct(productForm: NgForm){

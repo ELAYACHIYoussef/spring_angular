@@ -26,6 +26,6 @@ export class ProductService {
   }
 
   public getProductById(productId){
-    return this.httpClient.get<Product>("http://localhost:9095/getProductById"+productId);
+    return this.httpClient.get<Product>("http://localhost:9095/getProductById/"+productId);
   }
 }
