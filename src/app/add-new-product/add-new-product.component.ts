@@ -2,7 +2,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route } from '@angular/router';
+import { ProductResolveService } from '../product-resolve.service';
 import { FileHandle } from '../_model/file-handle.module';
 import { Product } from '../_model/product.model';
 import { ProductService } from '../_services/product.service';
@@ -26,8 +27,8 @@ export class AddNewProductComponent implements OnInit{
   constructor(private formBuilder: FormBuilder,
     private productService: ProductService,
     private sanitazer:DomSanitizer,
-    private activatedRoute:ActivatedRoute
-   ) {
+    private activatedRoute:ActivatedRoute,
+    private productResolveService: ProductResolveService   ) {
     this.productForm = this.formBuilder.group({
       productName: ['', [Validators.required, Validators.minLength(2)]],
       productDescription: [''],
@@ -36,10 +37,16 @@ export class AddNewProductComponent implements OnInit{
     });
   }
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(data => {
-    this.product = data['product'];
-  });
+    this.productResolveService.resolve(this.activatedRoute.snapshot, null).subscribe(
+      (product: Product) => {
+        this.product = product;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
+
 
   public addProduct(productForm: NgForm){
     const productFormData = this.prepareFromData(this.product);
@@ -96,6 +103,15 @@ export class AddNewProductComponent implements OnInit{
 
   fileDropped(filehandle:FileHandle){
     this.product.productImages.push(filehandle);
+  }
+  getProductDetails(): Product {
+    return {
+      productName: "",
+      productDescription: "",
+      productDiscountPrice: 0,
+      productActualPrice: 0,
+      productImages: []
+    };
   }
 
 }

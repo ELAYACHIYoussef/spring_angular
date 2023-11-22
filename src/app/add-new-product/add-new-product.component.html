@@ -1,87 +1,75 @@
-<div class="containe mt-5" >
-    <div class="card p-2">
-        <div class="row">
-           <div class="col-6" >
-            <form [formGroup]="productForm" (ngSubmit)="addProduct(productForm)" novalidate >
+<div class="container mt-5">
+  <div class="card p-2">
+    <div class="row">
+      <div class="col-6" *ngIf="product">
+        <form [formGroup]="productForm" (ngSubmit)="addProduct(productForm)" novalidate>
 
-            <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Nom du produit</mat-label>
-                <input matInput placeholder="Placeholder" formControlName="productName" [(ngModel)]="product.productName" name="productName"
-                [ngClass]="{'error-field': productForm.get('productName').invalid && productForm.get('productName').touched }">
-                <div *ngIf="productForm.get('productName').hasError('required')" class="error-message" >
-                Le nom du produit est requis.
-                </div>
-                <div *ngIf="productForm.get('productName').hasError('minlength')" class="error-message" >
-                  Le nom du produit doit contenir au moins 2 caractères. 
-                  </div>
-            </mat-form-field>
-              
-              <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Description du produit</mat-label>
-                <input matInput placeholder="Placeholder" formControlName="productDescription" [(ngModel)]="product.productDescription" name="productDescription">
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Prix avec réduction</mat-label>
-                <input matInput placeholder="Placeholder" type="number" formControlName="productDiscountPrice" [(ngModel)]="product.productDiscountPrice" name="productDiscountPrice"
-                [ngClass]="{'error-field': productForm.get('productDiscountPrice').invalid && productForm.get('productDiscountPrice').touched }"
-                >
-                <div *ngIf="productForm.get('productDiscountPrice').hasError('min')" class="error-message">
-                  Le prix avec réduction doit être supérieur à 0.
-                </div>
-              </mat-form-field>
-
-              
-              <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Prix actuel</mat-label>
-                <input matInput placeholder="Placeholder" type="number" formControlName="productActualPrice" [(ngModel)]="product.productActualPrice" name="productActualPrice">
-              </mat-form-field>
-              <div align="end">
-
-              <button mat-stroked-button color="primary" style="margin-right: 4px;">Clear</button>
-              <button type="submit" mat-stroked-button  color="primary" >Créer le produit</button>
-              </div>
-
-            </form>
-           </div>
-           <div class="col-6">
-            <div>
-
-
-              <div class="dropzone"
-              appDrag
-              (files)="fileDropped($event)"
-              >
-                 <div class="text-wrapper">
-                  <div class="centered">
-                    Drag and drop your file or
-                    <a (click)="selectFile.click()" class="brows-button">browse </a> 
-                     a file
-                  </div>
-                  
-                 </div>
-              </div>
-              <input type="file"
-                style="display: none;"
-                multiple value="select"
-                #selectFile
-             (change)="onFileSelected($event)">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Nom du produit</mat-label>
+            <input matInput placeholder="Placeholder" formControlName="productName"
+                   [(ngModel)]="product.productName"
+                   [ngClass]="{'error-field': productForm.get('productName').invalid && productForm.get('productName').touched }">
+            <div *ngIf="productForm.get('productName').hasError('required')" class="error-message">
+              Le nom du produit est requis.
             </div>
+            <div *ngIf="productForm.get('productName').hasError('minlength')" class="error-message">
+              Le nom du produit doit contenir au moins 2 caractères.
+            </div>
+          </mat-form-field>
 
-            <div class="mt-5">
-              <div class="row">
-                <mat-grid-list cols="4" rowHeight="1:1">
-                  <mat-grid-tile *ngFor="let file of product.productImages; let i = index;">
-                     <div style="position: relative">
-                      <span class="btn-remove-image" (click)="removeImage(i)">x</span>
-                       <img [src]="file.url" width="100px" height="100px">
-                     </div>
-                  </mat-grid-tile>
-                </mat-grid-list>
-              </div>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Description du produit</mat-label>
+            <input matInput placeholder="Placeholder" formControlName="productDescription"
+                   [(ngModel)]="product.productDescription">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Prix avec réduction</mat-label>
+            <input matInput placeholder="Placeholder" type="number" formControlName="productDiscountPrice"
+                   [(ngModel)]="product.productDiscountPrice"
+                   [ngClass]="{'error-field': productForm.get('productDiscountPrice').invalid && productForm.get('productDiscountPrice').touched }">
+            <div *ngIf="productForm.get('productDiscountPrice').hasError('min')" class="error-message">
+              Le prix avec réduction doit être supérieur à 0.
             </div>
-           
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Prix actuel</mat-label>
+            <input matInput placeholder="Placeholder" type="number" formControlName="productActualPrice"
+                   [(ngModel)]="product.productActualPrice">
+          </mat-form-field>
+          <div align="end">
+            <button mat-stroked-button color="primary" style="margin-right: 4px;" type="button" (click)="productForm.reset()">
+              Clear
+            </button>
+            <button mat-stroked-button color="primary" type="submit">Créer le produit</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="col-6">
+        <div class="dropzone" appDrag (files)="fileDropped($event)">
+          <div class="text-wrapper">
+            <div class="centered">
+              Drag and drop your file or
+              <a (click)="selectFile.click()" class="brows-button">browse </a> a file
             </div>
+          </div>
         </div>
+        <input type="file" style="display: none;" multiple value="select" #selectFile (change)="onFileSelected($event)">
+        <div class="mt-5">
+          <div class="row">
+            <mat-grid-list cols="4" rowHeight="1:1">
+              <mat-grid-tile *ngFor="let file of product.productImages; let i = index;">
+                <div style="position: relative">
+                  <span class="btn-remove-image" (click)="removeImage(i)">x</span>
+                  <img [src]="file.url" width="100px" height="100px">
+                </div>
+              </mat-grid-tile>
+            </mat-grid-list>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
