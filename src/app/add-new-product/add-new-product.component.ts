@@ -15,8 +15,9 @@ import { ProductService } from '../_services/product.service';
 })
 export class AddNewProductComponent implements OnInit{
   productForm;
-
+  isNewProduct=true;
  product: Product ={
+  productId:null,
   productName: "",
   productDescription: "",
   productDiscountPrice:0,
@@ -40,6 +41,7 @@ export class AddNewProductComponent implements OnInit{
     this.productResolveService.resolve(this.activatedRoute.snapshot, null).subscribe(
       (product: Product) => {
         this.product = product;
+        this.isNewProduct = !product || !product.productId;
       },
       (error) => {
         console.error(error);
@@ -106,6 +108,7 @@ export class AddNewProductComponent implements OnInit{
   }
   getProductDetails(): Product {
     return {
+      productId:null,
       productName: "",
       productDescription: "",
       productDiscountPrice: 0,

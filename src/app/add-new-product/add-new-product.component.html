@@ -42,7 +42,12 @@
             <button mat-stroked-button color="primary" style="margin-right: 4px;" type="button" (click)="productForm.reset()">
               Clear
             </button>
-            <button mat-stroked-button color="primary" type="submit">Créer le produit</button>
+            <button mat-stroked-button color="primary" type="submit" *ngIf="isNewProduct">
+              Créer le produit
+            </button>
+            <button mat-stroked-button color="primary" type="submit" *ngIf="! isNewProduct">
+              modifier le produit
+            </button>
           </div>
         </form>
       </div>
