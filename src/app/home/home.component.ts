@@ -1,10 +1,38 @@
-import { Component } from '@angular/core';
-
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs';
+import { Product } from '../_model/product.model';
+import { ProductService } from '../_services/product.service';
+import { ImageProccessingService } from '../image-proccessing.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
+  productDetails= [];
 
+  constructor(private productService: ProductService,
+    private imageProcessingService:ImageProccessingService,){
+
+  }
+  ngOnInit(): void {
+    this.getProductHome();
+  }
+  
+  public getProductHome() {
+    this.productService.showProduct()
+      .pipe(
+        map((x: Product[], i) => x.map((product: Product) => this.imageProcessingService.createImages(product)))
+      )
+      .subscribe(
+        (resp: Product[]) => {
+          console.log(resp); // Vérifiez ici les données reçues
+          this.productDetails = resp;
+        },
+        (err: HttpErrorResponse) => {
+          console.log(err);
+        }
+      );
+  }
 }
