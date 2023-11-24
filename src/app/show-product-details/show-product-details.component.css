@@ -1,3 +1,9 @@
 table{
     width: 100%;
+}z
+table td {
+    padding: 10%;
+}
+.mat-col-description{
+    width: 35% !important;
 }
