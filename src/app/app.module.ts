@@ -28,6 +28,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
 import { ShowImageProductDialogComponent } from './show-image-product-dialog/show-image-product-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { ProductViewDetailsComponent } from './product-view-details/product-view-details.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     DragDirective,
     ShowProductDetailsComponent,
     ShowImageProductDialogComponent,
+    ProductViewDetailsComponent,
     
   ],
   imports: [
