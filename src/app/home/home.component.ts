@@ -40,6 +40,10 @@ export class HomeComponent implements OnInit{
   }
 
   public showProductDetail(productId) {
-    this.router.navigate(['/productDetails',{productId:productId}])
+    if (productId) {
+      this.router.navigate(['/productDetails', { productId: productId }]);
+    } else {
+      console.error('Product ID is not defined.');
+    }
   }
 }

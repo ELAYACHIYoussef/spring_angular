@@ -1,10 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ProductResolveService } from '../product-resolve.service';
+import { Product } from '../_model/product.model';
 
 @Component({
   selector: 'app-product-view-details',
   templateUrl: './product-view-details.component.html',
   styleUrls: ['./product-view-details.component.css']
 })
-export class ProductViewDetailsComponent {
+export class ProductViewDetailsComponent implements OnInit {
+  product: Product;
+  selectProductIndex=0;
+  constructor(private productResolveService : ProductResolveService,
+    private activatedRoute: ActivatedRoute
+    ){
+    
+  }
+  ngOnInit(): void {
+    this.activatedRoute.data.subscribe((data: { product: Product }) => {
+      this.product = data.product;
+    });
+  }
 
+  changeIndex(index){
+    this.selectProductIndex=index;
+  }    
 }

@@ -1,0 +1,20 @@
+.product-information{
+    font-size: medium;
+
+}
+
+.image-container {
+    height: 300px; /* Ajustez cette valeur en fonction de vos besoins */
+    width: 100%; /* Ajoutez cette ligne pour définir la largeur à 100% */
+    position: relative;
+  }
+.product-zoom-image {
+    max-width: 100%; /* Ajustez cette valeur en fonction de vos besoins */
+    max-height: 100%; /* Ajustez cette valeur en fonction de vos besoins */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }

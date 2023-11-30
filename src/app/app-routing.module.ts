@@ -23,7 +23,8 @@ const routes: Routes = [
    }
 },
   { path: 'getAllProducts',component:ShowProductDetailsComponent},
-  {path: 'productDetails',component:ProductViewDetailsComponent,resolve:{
+  {path: 'productDetails',component:ProductViewDetailsComponent,
+  resolve:{
     product:ProductResolveService
   }}
  
