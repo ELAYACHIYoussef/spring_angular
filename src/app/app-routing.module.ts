@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddNewProductComponent } from './add-new-product/add-new-product.component';
 import { AdminComponent } from './admin/admin.component';
+import { BuyProductResolverService } from './buy-product-resolver.service';
+import { BuyProductComponent } from './buy-product/buy-product.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -26,7 +28,12 @@ const routes: Routes = [
   {path: 'productDetails',component:ProductViewDetailsComponent,
   resolve:{
     product:ProductResolveService
-  }}
+  }},
+  {path: 'buyProduct',component:BuyProductComponent,canActivate:[AuthGuard],data:{roles:['User']},
+  resolve:{
+    productDtails:BuyProductResolverService
+  }
+}
  
 ];
 

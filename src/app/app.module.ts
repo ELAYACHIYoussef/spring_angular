@@ -29,6 +29,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { ShowImageProductDialogComponent } from './show-image-product-dialog/show-image-product-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ProductViewDetailsComponent } from './product-view-details/product-view-details.component';
+import { BuyProductComponent } from './buy-product/buy-product.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ProductViewDetailsComponent } from './product-view-details/product-view
     ShowProductDetailsComponent,
     ShowImageProductDialogComponent,
     ProductViewDetailsComponent,
+    BuyProductComponent,
     
   ],
   imports: [

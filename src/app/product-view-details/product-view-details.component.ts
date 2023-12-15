@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductResolveService } from '../product-resolve.service';
 import { Product } from '../_model/product.model';
 
@@ -12,7 +12,8 @@ export class ProductViewDetailsComponent implements OnInit {
   product: Product;
   selectProductIndex=0;
   constructor(private productResolveService : ProductResolveService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
     ){
     
   }
@@ -24,5 +25,8 @@ export class ProductViewDetailsComponent implements OnInit {
 
   changeIndex(index){
     this.selectProductIndex=index;
-  }    
+  }   
+  buyProduct(){
+   this.router.navigate(['/buyProduct']);
+  } 
 }

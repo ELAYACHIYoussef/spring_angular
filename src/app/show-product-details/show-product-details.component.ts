@@ -18,7 +18,8 @@ import { ProductService } from '../_services/product.service';
 export class ShowProductDetailsComponent implements OnInit {
   productDetails: Product[] = [];
   ver: boolean = false;
-  displayedColumns: string[] = ['Id', 'Product Name', 'description', 'Product Discount Price','Product Actual Price','Actions'];
+  // Dans votre fichier .ts
+displayedColumns: string[] = ['Id', 'Product Name', 'Product Description', 'Product Discount Price', 'Product Actual Price', 'Actions'];
   constructor(private productService:ProductService,
     public imageDialod:MatDialog,
     private imageProcessingService:ImageProccessingService,
