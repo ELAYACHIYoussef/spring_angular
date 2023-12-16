@@ -2,14 +2,65 @@
     <div class="card p-3">
         <div class="row">
             <div class="col-6">
-                    
+                <form [formGroup]="orderForm" (ngSubmit)="placeOrder(orderForm)" novalidate>
+
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Full Name</mat-label>
+                        <input matInput placeholder="Full Name" formControlName="fullName"
+                            [(ngModel)]="orderDetails.fullName"
+                            [ngClass]="{'error-field': orderForm.get('fullName').invalid && orderForm.get('fullName').touched }">
+                        <div *ngIf="orderForm.get('fullName').hasError('required')" class="error-message">
+                            Full Name is required.
+                        </div>
+                        <div *ngIf="orderForm.get('fullName').hasError('minlength')" class="error-message">
+                            Full Name must be at least 2 characters long.
+                        </div>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Full Address</mat-label>
+                        <input matInput placeholder="Full Address" formControlName="fullAdresse"
+                            [(ngModel)]="orderDetails.fullAdresse"
+                            [ngClass]="{'error-field': orderForm.get('fullAdresse').invalid && orderForm.get('fullAdresse').touched }">
+                        <div *ngIf="orderForm.get('fullAdresse').hasError('required')" class="error-message">
+                            Full Address is required.
+                        </div>
+                        <div *ngIf="orderForm.get('fullAdresse').hasError('minlength')" class="error-message">
+                            Full Address must be at least 2 characters long.
+                        </div>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Contact Number</mat-label>
+                        <input matInput placeholder="Contact Number" formControlName="contactNumber"
+                            [(ngModel)]="orderDetails.contactNumber"
+                            [ngClass]="{'error-field': orderForm.get('contactNumber').invalid && orderForm.get('contactNumber').touched }">
+                        <div *ngIf="orderForm.get('contactNumber').hasError('required')" class="error-message">
+                            Contact Number is required.
+                        </div>
+                        <div *ngIf="orderForm.get('contactNumber').hasError('pattern')" class="error-message">
+                            Please enter a valid 10-digit Contact Number.
+                        </div>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Alternate Contact Number</mat-label>
+                        <input matInput placeholder="Alternate Contact Number" formControlName="alternateContactNumber"
+                            [(ngModel)]="orderDetails.alternateContactNumber"
+                            [ngClass]="{'error-field': orderForm.get('alternateContactNumber').invalid && orderForm.get('alternateContactNumber').touched }">
+                        <div *ngIf="orderForm.get('alternateContactNumber').hasError('minlength')" class="error-message">
+                            Alternate Contact Number must be at least 2 characters long.
+                        </div>
+                    </mat-form-field>
+
+                    <div align="right">
+                        <button mat-stroked-button color="primary" type="submit">Submit Order</button>
+                    </div>
+                </form>
             </div>
             <div class="col-6">
-                Avec cette modification, votre endpoint devrait fonctionner correctement en prenant en compte les
-                valeurs des variables de chemin
+                <!-- Placeholder content for the second column -->
             </div>
         </div>
-
     </div>
-
 </div>
