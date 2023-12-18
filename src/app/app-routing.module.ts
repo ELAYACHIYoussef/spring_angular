@@ -4,6 +4,7 @@ import { AddNewProductComponent } from './add-new-product/add-new-product.compon
 import { AdminComponent } from './admin/admin.component';
 import { BuyProductResolverService } from './buy-product-resolver.service';
 import { BuyProductComponent } from './buy-product/buy-product.component';
+import { DialogConfimOrderComponent } from './dialog-confim-order/dialog-confim-order.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -33,7 +34,8 @@ const routes: Routes = [
   resolve:{
     productDtails:BuyProductResolverService
   }
-}
+},
+{path: 'ConfirmOrder',component:DialogConfimOrderComponent,canActivate:[AuthGuard],data:{roles:['User']}}
  
 ];
 

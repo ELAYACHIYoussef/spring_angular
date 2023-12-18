@@ -1,0 +1,38 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+  }
+  
+  .card {
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 8px;
+  }
+  
+  h1 {
+    color: #2196f3; /* ou toute autre couleur de votre choix */
+  }
+  
+  p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+  }
+  
+  button {
+    background-color: #2196f3; /* ou toute autre couleur de votre choix */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #1565c0; /* ou toute autre couleur de survol */
+  }
+  

@@ -30,6 +30,8 @@ import { ShowImageProductDialogComponent } from './show-image-product-dialog/sho
 import {MatDialogModule} from '@angular/material/dialog';
 import { ProductViewDetailsComponent } from './product-view-details/product-view-details.component';
 import { BuyProductComponent } from './buy-product/buy-product.component';
+import { DialogConfimOrderComponent } from './dialog-confim-order/dialog-confim-order.component';
+import { DialogErrorMessageComponent } from './dialog-error-message/dialog-error-message.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { BuyProductComponent } from './buy-product/buy-product.component';
     ShowImageProductDialogComponent,
     ProductViewDetailsComponent,
     BuyProductComponent,
+    DialogConfimOrderComponent,
+    DialogErrorMessageComponent,
     
   ],
   imports: [

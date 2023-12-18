@@ -59,7 +59,42 @@
                 </form>
             </div>
             <div class="col-6">
-                <!-- Placeholder content for the second column -->
+                <table class="table">
+                    <thead class="thead">
+                        <tr>
+                            <th>Name</th>
+                            <th>Amount</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="tbody">
+                        <tr *ngFor="let product of productDtails">
+                            <td>{{product.productName}}</td>
+                            <td>{{product.productDiscountPrice}}</td>
+                            <td>
+                                <select class="form-select"
+                                #quantity
+                                [ngModel]="getQuantityForProduct(product.productId)"
+                                (change)="onQuantityChanged(quantity.value,product.productId)"
+                                >
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </td>
+                            <td>{{getCalculatedPrice(product.productId,product.productDiscountPrice)}}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>Total</td>
+                            <td>{{calculatedGrandTotal()}}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

@@ -1,0 +1,29 @@
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+  }
+  
+  .card {
+    background-color: #fff;
+    border: 2px solid #ff0000;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+  }
+  
+  .error-dialog {
+    margin-top: 20px;
+  }
+  
+  .error-dialog h2 {
+    color: #ff0000;
+  }
+  
+  .error-dialog p {
+    color: #333;
+  }
+  
