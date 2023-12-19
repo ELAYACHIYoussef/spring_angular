@@ -47,9 +47,9 @@
               <input matInput placeholder="Password" type="{{ userPassword ? 'password' : 'text' }}"
                 formControlName="userPassword"
                 [ngClass]="{'error-field-password': userForm.get('userPassword').invalid && userForm.get('userPassword').touched }">
-              <button mat-icon-button matSuffix (click)="togglePasswordVisibility()">
-                <mat-icon>{{ userPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
-              </button>
+                <button mat-icon-button matSuffix type="button" (click)="togglePasswordVisibility()">
+                  <mat-icon>{{ userPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+                </button>                
               <div *ngIf="userForm.get('userPassword').hasError('required')" class="error-message-password">
                 Le mot de passe est requis.
               </div>
