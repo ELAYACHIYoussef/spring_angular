@@ -54,6 +54,8 @@ export class LoginComponent implements OnInit {
     this.showPassword= !this.showPassword
   }
 
-  
+  public registerNewUser(){
+    this.router.navigate(['/registerNewUser']);
+  }
   
 }

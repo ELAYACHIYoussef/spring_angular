@@ -22,7 +22,9 @@ export class UserService {
     return this.httpClient.post(this.PATH_of_API + "/authenticate", loginData,{headers:this.requestHeader});
   }
   
-
+  public register(registerDate:any){
+    return this.httpClient.post(this.PATH_of_API + "/registerNewUser",registerDate)
+  }
   public forUser(){
     return this.httpClient.get(this.PATH_of_API + '/forUser',
     {responseType:"text"});

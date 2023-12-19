@@ -1,0 +1,71 @@
+<div class="container mt-5">
+    <div class="card p-2">
+      <div class="row">
+        <div class="col-6" *ngIf="user">
+          <form [formGroup]="userForm" (ngSubmit)="addUser(userForm)" novalidate>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>userName</mat-label>
+              <input matInput placeholder="Username" type="text" formControlName="userName"
+                [ngClass]="{'error-field': userForm.get('userName').invalid && userForm.get('userName').touched }">
+              <div *ngIf="userForm.get('userName').hasError('required')" class="error-message">
+                Le nom d'utilisateur est requis.
+              </div>
+              <div *ngIf="userForm.get('userName').hasError('minlength')" class="error-message">
+                Le nom d'utilisateur doit contenir au moins 4 caractères.
+              </div>
+              <mat-hint>userName</mat-hint>
+            </mat-form-field>
+  
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>userFirstName</mat-label>
+              <input matInput placeholder="First Name" type="text" formControlName="userFirstName"
+                [ngClass]="{'error-field': userForm.get('userFirstName').invalid && userForm.get('userFirstName').touched }">
+              <div *ngIf="userForm.get('userFirstName').hasError('required')" class="error-message">
+                Le prénom est requis.
+              </div>
+              <div *ngIf="userForm.get('userFirstName').hasError('minlength')" class="error-message">
+                Le prénom doit contenir au moins 4 caractères.
+              </div>
+              <mat-hint>userFirstName</mat-hint>
+            </mat-form-field>
+  
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>userLastName</mat-label>
+              <input matInput placeholder="Last Name" type="text" formControlName="userLastName"
+                [ngClass]="{'error-field': userForm.get('userLastName').invalid && userForm.get('userLastName').touched }">
+              <div *ngIf="userForm.get('userLastName').hasError('required')" class="error-message">
+                Le nom de famille est requis.
+              </div>
+              <div *ngIf="userForm.get('userLastName').hasError('minlength')" class="error-message">
+                Le nom de famille doit contenir au moins 4 caractères.
+              </div>
+              <mat-hint>userFirstName</mat-hint>
+            </mat-form-field>
+  
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>userPassword</mat-label>
+              <input matInput placeholder="Password" type="{{ userPassword ? 'password' : 'text' }}"
+                formControlName="userPassword"
+                [ngClass]="{'error-field-password': userForm.get('userPassword').invalid && userForm.get('userPassword').touched }">
+              <button mat-icon-button matSuffix (click)="togglePasswordVisibility()">
+                <mat-icon>{{ userPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
+              <div *ngIf="userForm.get('userPassword').hasError('required')" class="error-message-password">
+                Le mot de passe est requis.
+              </div>
+              <div *ngIf="userForm.get('userPassword').hasError('maxlength')" class="error-message-password">
+                Le mot de passe doit contenir moins de 15 caractères.
+              </div>
+              <div *ngIf="userForm.get('userPassword').hasError('minlength')" class="error-message-password">
+                Le mot de passe doit contenir au moins 6 caractères.
+              </div>
+              <mat-hint>userPassword</mat-hint>
+            </mat-form-field>
+  
+            <button class="w-100" mat-raised-button color="primary" type="submit">Register</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
