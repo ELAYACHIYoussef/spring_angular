@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   loginForm;
+  showPassword: boolean = true;
   constructor(private userService: UserService,
     private userAuthService: UserAuthService,
     private router:Router,
@@ -49,5 +50,10 @@ export class LoginComponent implements OnInit {
     }
    )
   } 
- 
+  public togglePasswordVisibility(){
+    this.showPassword= !this.showPassword
+  }
+
+  
+  
 }

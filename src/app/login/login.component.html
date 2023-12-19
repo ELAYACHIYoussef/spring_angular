@@ -25,20 +25,23 @@
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>userPassword</mat-label>
         <input matInput placeholder="Placeholder" 
-        type="password" formControlName="userPassword"
-        [ngClass]="{'error-field-password': loginForm.get('userPassword').invalid && loginForm.get('userPassword').touched }"
-         >
+               type="{{ showPassword ? 'text' : 'password' }}" formControlName="userPassword"
+               [ngClass]="{'error-field-password': loginForm.get('userPassword').invalid && loginForm.get('userPassword').touched }">
+        <button mat-icon-button matSuffix (click)="togglePasswordVisibility()">
+          <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
         <div *ngIf="loginForm.get('userPassword').hasError('required')" class="error-message-password">
           Le mot de passe est requis.
         </div>
-        <div *ngIf="loginForm.get('userPassword').hasError('maxlength')"   class="error-message-password">
-          Le mot de passe doit contenir  moins 15 caractères.
+        <div *ngIf="loginForm.get('userPassword').hasError('maxlength')" class="error-message-password">
+          Le mot de passe doit contenir moins de 15 caractères.
         </div>
-        <div *ngIf="loginForm.get('userPassword').hasError('minlength')"   class="error-message-password">
+        <div *ngIf="loginForm.get('userPassword').hasError('minlength')" class="error-message-password">
           Le mot de passe doit contenir au moins 6 caractères.
         </div>
         <mat-hint>userPassword</mat-hint>
       </mat-form-field>
+      
       <button class="w-100" mat-raised-button color="primary">Login</button>
 
       
