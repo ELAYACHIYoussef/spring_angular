@@ -18,6 +18,9 @@ import { ProductService } from '../_services/product.service';
 export class ShowProductDetailsComponent implements OnInit {
   productDetails: Product[] = [];
   ver: boolean = false;
+  showTable=false;
+  showMoreProduct=false;
+  pageNumber: number =0;
   // Dans votre fichier .ts
 displayedColumns: string[] = ['Id', 'Product Name', 'Product Description', 'Product Discount Price', 'Product Actual Price', 'Actions'];
   constructor(private productService:ProductService,
@@ -32,16 +35,24 @@ displayedColumns: string[] = ['Id', 'Product Name', 'Product Description', 'Prod
   }
 
 public getAllProducts(){
-  this.productService.showProduct()
+  this.showTable=false;
+  this.productService.showProduct(this.pageNumber)
   .pipe(
     map((x:Product[],i)=>x.map((product:Product)=>this.imageProcessingService.createImages(product)))
   )
   .subscribe(
     (resp:Product[]) =>{
       console.log(resp);
+     
+      resp.forEach(p=>this.productDetails.push(p));
+      //this.productDetails = resp;
+      this.showTable=true;
 
-      this.productDetails = resp;
-      
+      if(resp.length ==12){
+        this.showMoreProduct=true;
+      }else{
+        this.showMoreProduct=false;
+      }
       console.log("ana hnaaaaaaaaaaaaaaaaaaaaaaaaaaaaa--------------------------------------------------- ");
       console.log(this.productDetails);
     },(err:HttpErrorResponse)=>{
@@ -75,6 +86,11 @@ showImages(product:Product){
 public editProductDetails(productId){
   console.log(productId);
   this.router.navigate(['/addNewProduct',{productId:productId}])
+}
+
+public loadMoreProduct(){
+this.pageNumber=this.pageNumber+1;
+this.getAllProducts();
 }
 
 }

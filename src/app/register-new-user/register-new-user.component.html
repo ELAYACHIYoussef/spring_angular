@@ -61,6 +61,19 @@
               </div>
               <mat-hint>userPassword</mat-hint>
             </mat-form-field>
+
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Confirm Password</mat-label>
+              <input matInput placeholder="Confirm Password" type="password" formControlName="confirmPassword"
+                [ngClass]="{'error-field': userForm.get('confirmPassword').invalid && userForm.get('confirmPassword').touched }">
+              <div *ngIf="userForm.get('confirmPassword').hasError('required')" class="error-message">
+                La confirmation du mot de passe est requise.
+              </div>
+              <div *ngIf="userForm.hasError('passwordMismatch')" class="error-message">
+                Les mots de passe ne correspondent pas.
+              </div>
+              <mat-hint>Confirm Password</mat-hint>
+            </mat-form-field>
   
             <button class="w-100" mat-raised-button color="primary" type="submit">Register</button>
           </form>

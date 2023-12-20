@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../_model/user.model';
 import { UserService } from '../_services/user.service';
@@ -27,7 +27,8 @@ export class RegisterNewUserComponent implements OnInit {
       userFirstName: ['', [Validators.required, Validators.minLength(4)]],
       userLastName: ['', [Validators.required, Validators.minLength(4)]],
       userPassword: ['', [Validators.required, Validators.maxLength(15), Validators.minLength(6)]],
-    });
+      confirmPassword: ['', [Validators.required]],
+    }, { validators: this.passwordMatchValidator });
   }
 
   ngOnInit(): void {}
@@ -48,5 +49,16 @@ export class RegisterNewUserComponent implements OnInit {
 
   public togglePasswordVisibility() {
     this.userPassword = !this.userPassword;
+  }
+
+  passwordMatchValidator(control: AbstractControl) {
+    const password = control.get('userPassword')?.value;
+    const confirmPassword = control.get('confirmPassword')?.value;
+
+    if (password !== confirmPassword) {
+      control.get('confirmPassword')?.setErrors({ passwordMismatch: true });
+    } else {
+      return null;
+    }
   }
 }
