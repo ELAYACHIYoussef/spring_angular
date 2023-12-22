@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { OrderDetails } from '../_model/order-details.model';
 import { Product } from '../_model/product.model';
+import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +17,10 @@ export class ProductService {
     return this.httpClient.post<Product>("http://localhost:9095/addNewProduct", product)
   }
 
-  public showProduct(pageNumber) {
-    return this.httpClient.get<Product[]>("http://localhost:9095/getAllProduct?pageNumber="+pageNumber)
+  public showProduct(pageNumber, searchKey: string = ""): Observable<Product[]> {
+    return this.httpClient.get<Product[]>("http://localhost:9095/getAllProduct?pageNumber=" + pageNumber + "&searchKey=" + searchKey);
   }
+  
 
   public deleteProduct(productId: number) {
     return this.httpClient.delete("http://localhost:9095/deletProductDetails/" + productId)

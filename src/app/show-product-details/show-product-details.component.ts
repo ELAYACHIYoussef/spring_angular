@@ -33,10 +33,15 @@ displayedColumns: string[] = ['Id', 'Product Name', 'Product Description', 'Prod
   ngOnInit() : void {
     this.getAllProducts();
   }
-
-public getAllProducts(){
+  public searchByKeyWord(searchKey){
+    console.log(searchKey);
+    this.pageNumber=0;
+    this.productDetails=[];
+    this.getAllProducts(searchKey)
+  }
+public getAllProducts(searchKey:string=""){
   this.showTable=false;
-  this.productService.showProduct(this.pageNumber)
+  this.productService.showProduct(this.pageNumber,searchKey)
   .pipe(
     map((x:Product[],i)=>x.map((product:Product)=>this.imageProcessingService.createImages(product)))
   )

@@ -11,6 +11,7 @@ import { UserService } from '../_services/user.service';
 export class HeaderComponent implements OnInit {
 
   isLogin: boolean = false;
+  
   private test:any= 4
     constructor(
                 private userAuthService: UserAuthService,
