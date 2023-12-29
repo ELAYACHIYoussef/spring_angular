@@ -41,7 +41,5 @@ export class ProductService {
   }
 
 
-  public addToCart(productId){
-    return this.httpClient.get("http://localhost:9095/addToCart/"+productId)
-  }
+ 
 }
