@@ -33,6 +33,7 @@ import { BuyProductComponent } from './buy-product/buy-product.component';
 import { DialogConfimOrderComponent } from './dialog-confim-order/dialog-confim-order.component';
 import { DialogErrorMessageComponent } from './dialog-error-message/dialog-error-message.component';
 import { RegisterNewUserComponent } from './register-new-user/register-new-user.component';
+import { ConfiremAddToCartComponent } from './confirem-add-to-cart/confirem-add-to-cart.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { RegisterNewUserComponent } from './register-new-user/register-new-user.
     DialogConfimOrderComponent,
     DialogErrorMessageComponent,
     RegisterNewUserComponent,
+    ConfiremAddToCartComponent,
     
   ],
   imports: [

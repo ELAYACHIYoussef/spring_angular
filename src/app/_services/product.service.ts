@@ -39,4 +39,9 @@ export class ProductService {
   public placeOrder(orderDetails: OrderDetails){
     return this.httpClient.post("http://localhost:9095/placeOrder",orderDetails)
   }
+
+
+  public addToCart(productId){
+    return this.httpClient.get("http://localhost:9095/addToCart/"+productId)
+  }
 }

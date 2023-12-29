@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ConfiremAddToCartComponent } from '../confirem-add-to-cart/confirem-add-to-cart.component';
 import { ProductResolveService } from '../product-resolve.service';
 import { Product } from '../_model/product.model';
+import { ProductService } from '../_services/product.service';
 
 @Component({
   selector: 'app-product-view-details',
@@ -13,7 +16,9 @@ export class ProductViewDetailsComponent implements OnInit {
   selectProductIndex=0;
   constructor(private productResolveService : ProductResolveService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private productService: ProductService,
+    private dialog: MatDialog
     ){
     
   }
@@ -31,4 +36,24 @@ export class ProductViewDetailsComponent implements OnInit {
   {isSingleProductCheckout:true,id:productId}
   ]);
   } 
+
+  public addToCart(productId) {
+    const dialogRef = this.dialog.open(ConfiremAddToCartComponent, {
+      width: '300px',
+      data: { productName: this.product.productName }
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.productService.addToCart(productId).subscribe(
+          (response) => {
+            console.log(response);
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+      }
+    });
+  }
 }
